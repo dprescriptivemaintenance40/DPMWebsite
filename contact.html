@@ -309,17 +309,17 @@
                 <div class="container clear">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-10 col-xs-offset-1 padd-20-top padd-60-btm">
-                            <form name="myForm" onsubmit="return validateForm()" id="my-form" action="https://formspree.io/f/meqpvnej" method="POST" class="contact-form">
+                            <form name="myForm" onsubmit="return validateForm()" id="my-form" action="https://localhost:44331/api/ContactUsAPI/ContactUs" method="POST" class="contact-form">
                                 <p>Call or submit our online form to request an estimate or for general questions about our services. We look forward to serving you!</p>
                                 <div class="form-group">
                                     <label for="contact_name">Full Name</label>
-                                    <input type="text" name="name" class="form-control form-bordered" id="contact_name">
+                                    <input type="text" name="Subject" class="form-control form-bordered" id="contact_name">
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="contact_email" class="form-label">Email Address</label>
-                                            <input type="email" name="email" class="form-control form-bordered" id="contact_email">
+                                            <input type="email" name="Email" class="form-control form-bordered" id="contact_email">
                                         </div>
                                     </div>
                                     <!-- <div class="col-sm-6">
@@ -335,7 +335,7 @@
                                 </div> -->
                                 <div class="form-group">
                                     <label for="contact_message" class="form-label">Message</label>
-                                    <textarea name="message" class="form-control form-bordered" rows="6" id="contact_message"></textarea>
+                                    <textarea name="Comment" class="form-control form-bordered" rows="6" id="contact_message"></textarea>
                                 </div>
                                 <button type="submit" id="my-form-button" class="button btn-square">Submit</button>
                                 <p id="my-form-status"></p>
@@ -460,31 +460,36 @@
 
     <script>
         function validateForm() {
-            var name = document.forms["myForm"]["name"].value;
-            var email = document.forms["myForm"]["email"].value;
-            var message = document.forms["myForm"]["message"].value;
-            if (name == "") {
+            var Subject = document.forms["myForm"]["Subject"].value;
+            var Email = document.forms["myForm"]["Email"].value;
+            var Comment = document.forms["myForm"]["Comment"].value;
+            if (Subject == "") {
                 alert("Please fill your full name")
                 return false;
-            } else if (email == "") {
+            } else if (Email == "") {
                 alert("Please fill your email")
                 return false;
-            } else if (message == "") {
+            } else if (Comment == "") {
                 alert("Message is Empty !")
                 return false;
-            } else if (name != "" && email != "" && message != "") {
+            } else if (Subject != "" && Email != "" && Comment != "") {
                 var form = document.getElementById("my-form");
 
                 async function handleSubmit(event) {
                     event.preventDefault();
+                    const headers = { 'Content-Type': "application/json", 'responseType': 'json' };
                     var status = document.getElementById("my-form-status");
-                    var data = new FormData(event.target);
+                    let data = {
+                                ContactUsId : 0,
+                                Comment: Comment,
+                                Email: Email,
+                                To :"",
+                                Subject: Subject
+                              }
                     fetch(event.target.action, {
                         method: form.method,
-                        body: data,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        body: JSON.stringify(data),
+                        headers : headers
                     }).then(response => {
                         status.innerHTML = "Thanks for your submission!";
                         form.reset()
