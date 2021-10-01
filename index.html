@@ -1038,49 +1038,41 @@
         }
     </style>
     <!-- <button id="myBtn">Open Modal</button> -->
-
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="about">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 div-in-middle">
-                            <img src="assets/img/8step.jpg" style="width:100%">
-                        </div>
-                    </div>
-                    <div class="about content-section" style="padding: 20px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <ul style=" list-style-type: circle;">
-                                        <li>Data collection, conversion to digital, and mining</li>
-                                        <li>Configuration- empirical logic building. Establish Normal, Incipient & Degraded limits.</li>
-                                        <li> Train, Test & Validation- ML process.</li> <span id="dots">...</span><span id="more">
-				<li> Mathematical Model - Rule Engine. </li>
-				<li>Prediction- Forecast future Failures & Cost. </li>
-				<li>Root cause failure analysis- if existing strategies unable to eliminate; or new failure mode.</li>
-				<li> Reliability centered maintenance methodology to develop maintenance strategies. </li>
-				<li> Resource Leveling, Report consolidation for Just-in-time maintenance, and Dashboard. </li></span>
-                                    </ul>
-
-                                    <a onclick="myFunction()" id="myBtn" class="btn btn-warning btn-md" style="background-color:#585570; border-color:#585570;">Read more</a>
-
-                                    <!-- <button onclick="myFunction()" id="myBtn">Read more</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- .row -->
+    <div class="modal fade in video-modal" id="intro-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">DPM Dashboard</h4>
                 </div>
-                <!-- .container -->
+                <div class="modal-body">
+                    <img src="assets/img/8step.jpg" style="width:100%; max-width: 100%; display: inline-block; margin-bottom: 25px;">
+                        <ul style=" list-style-type: circle;">
+                            <li>Data collection, conversion to digital, and mining</li>
+                            <li>Configuration- empirical logic building. Establish Normal, Incipient & Degraded limits.</li>
+                            <li> Train, Test & Validation- ML process.</li> <span id="dots">...</span><span id="more">
+                                <li> Mathematical Model - Rule Engine. </li>
+                                <li>Prediction- Forecast future Failures & Cost. </li>
+                                <li>Root cause failure analysis- if existing strategies unable to eliminate; or new failure mode.</li>
+                                <li> Reliability centered maintenance methodology to develop maintenance strategies. </li>
+                                <li> Resource Leveling, Report consolidation for Just-in-time maintenance, and Dashboard. </li>
+                            </span>
+                        </ul>
+                        
+                        <a onclick="myFunction()" id="myBtn" class="btn btn-warning btn-md"
+                            style="background-color:#585570; border-color:#585570;">Read more</a>
+
+                </div>
             </div>
         </div>
-
     </div>
+
+
     <script>
+        $(window).load(function () {
+                $('#intro-modal').modal('show');
+            });
         // Get the modal
         var modal = document.getElementById("myModal");
 
