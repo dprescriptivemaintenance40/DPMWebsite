@@ -5535,3 +5535,11 @@ img[class*='wp-image-'] {
   font-family: 'Poppins';
   font-weight: 300;
 }
+@media (max-width: 900px) {
+  .video-modal .modal-dialog {
+    width: 95%;
+  }
+  .video-modal .modal-dialog .video-frame {
+    height: 350px;
+  }
+}
